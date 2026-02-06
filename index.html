@@ -33,7 +33,6 @@
                 #ffb6c1 85%,
                 #ffd6cc 100%
             );
-            padding: 1rem;
         }
 
         .heart {
@@ -53,8 +52,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            max-width: 400px;
         }
 
         .heart-glow {
@@ -79,10 +76,9 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.95);
             border-radius: 32px;
-            padding: 2rem 1.75rem;
-            width: 100%;
-            max-width: 400px;
-            min-height: 480px;
+            padding: 3rem 2.75rem;
+            width: 400px;
+            height: 480px;
             text-align: center;
             box-shadow:
                 0 8px 32px rgba(255, 100, 150, 0.15),
@@ -160,7 +156,7 @@
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 1rem 2.25rem;
             font-size: 1rem;
             font-family: inherit;
             font-weight: 600;
@@ -168,7 +164,6 @@
             border-radius: 14px;
             cursor: pointer;
             white-space: nowrap;
-            touch-action: manipulation;
         }
 
         .btn-yes {
@@ -178,29 +173,20 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .btn-yes:active {
-            transform: scale(0.95);
+        .btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(236, 72, 153, 0.5);
         }
 
-        /* .btn-no {
-            background: #fdf2f8;
-            color: #9ca3af;
-            border: 1px solid #fce7f3;
-            transition: all 0.3s ease;
-        } */
         .btn-no {
             background: #fdf2f8;
             color: #9ca3af;
             border: 1px solid #fce7f3;
-            transition: all 0.3s ease;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: 600;
-            border-radius: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-            touch-action: manipulation;
+            transition: left 0.3s ease, top 0.3s ease;
+        }
+
+        .btn-no:hover {
+            background: #fce7f3;
         }
 
         .btn-no.escaped {
@@ -214,12 +200,10 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            padding: 1rem;
         }
 
         .celebrate img {
-            width: 180px;
-            max-width: 100%;
+            width: 210px;
             border-radius: 18px;
             margin-bottom: 1rem;
         }
@@ -273,7 +257,7 @@
             transition: all 0.3s ease;
         }
 
-        .plan-link a:active {
+        .plan-link a:hover {
             background: rgba(252, 231, 243, 0.8);
             color: #ec4899;
         }
@@ -297,8 +281,6 @@
             align-items: center;
             width: 100%;
             height: 100%;
-            overflow-y: auto;
-            padding: 1rem 0;
         }
 
         .plan-gif-box {
@@ -313,7 +295,7 @@
         }
 
         .plan-header {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             opacity: 0;
             animation: slideUp 0.6s ease 0.2s forwards;
         }
@@ -384,53 +366,6 @@
             height: 11px;
             fill: #ec4899;
             flex-shrink: 0;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 480px) {
-            body {
-                padding: 0.5rem;
-            }
-
-            .card {
-                padding: 1.5rem 1.25rem;
-                min-height: auto;
-                border-radius: 24px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            .ask {
-                font-size: 1.3rem;
-            }
-
-            .gif-box img {
-                width: 120px;
-            }
-
-            .btn {
-                padding: 0.875rem 1.5rem;
-                font-size: 0.95rem;
-            }
-
-            .celebrate img {
-                width: 160px;
-            }
-
-            .celebrate h2 {
-                font-size: 1.75rem;
-            }
-
-            .celebrate p {
-                font-size: 1rem;
-            }
-
-            .heart-glow {
-                width: 400px;
-                height: 350px;
-            }
         }
     </style>
 </head>
@@ -548,7 +483,7 @@
 
         const noBtn = document.getElementById('noBtn');
         const placeholder = document.getElementById('noBtnPlaceholder');
-        let interactionCount = 0;
+        let hoverCount = 0;
 
         // Position the No button over the placeholder initially
         function positionNoBtn() {
@@ -562,33 +497,24 @@
         // Initial positioning after a small delay to ensure layout is ready
         setTimeout(positionNoBtn, 100);
         window.addEventListener('resize', () => {
-            if (interactionCount === 0) positionNoBtn();
+            if (hoverCount === 0) positionNoBtn();
         });
 
-        // Handle both hover and click/touch events
-        function handleNoInteraction(e) {
-            e.preventDefault();
-            interactionCount++;
+        noBtn.onmouseenter = function() {
+            hoverCount++;
             
-            if (interactionCount === 1) {
+            if (hoverCount === 1) {
                 noBtn.textContent = 'Hmm... 🤔';
                 noBtn.style.left = '10%';
-                noBtn.style.top = '70%';
-            } else if (interactionCount === 2) {
+                noBtn.style.top = '90%';
+            } else if (hoverCount === 2) {
                 noBtn.textContent = 'Sure? 😢';
                 noBtn.style.left = '75%';
                 noBtn.style.top = '25%';
             } else {
                 noBtn.style.display = 'none';
             }
-        }
-
-        // For desktop hover
-        noBtn.addEventListener('mouseenter', handleNoInteraction);
-        
-        // For mobile touch/click
-        noBtn.addEventListener('click', handleNoInteraction);
-        noBtn.addEventListener('touchstart', handleNoInteraction);
+        };
 
         document.getElementById('yesBtn').onclick = function() {
             document.getElementById('mainContent').style.display = 'none';
