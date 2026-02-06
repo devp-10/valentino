@@ -54,7 +54,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 360px;
         }
 
         .heart-glow {
@@ -79,10 +79,10 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.95);
             border-radius: 32px;
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.75rem;
             width: 100%;
-            max-width: 400px;
-            height: 550px;
+            max-width: 360px;
+            height: 480px;
             text-align: center;
             box-shadow:
                 0 8px 32px rgba(255, 100, 150, 0.15),
@@ -330,23 +330,36 @@
             font-size: 0.75rem;
         }
 
-        .event-card {
+        .event-cards-container {
+            display: flex;
+            gap: 0.75rem;
             width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .event-card {
+            flex: 1;
+            max-width: 150px;
+            aspect-ratio: 1;
             background: linear-gradient(135deg, #fdf2f8 0%, #fff 100%);
             border: 1px solid #fce7f3;
             border-radius: 14px;
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            text-align: left;
+            padding: 1rem 0.75rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
             animation: slideUp 0.6s ease forwards;
         }
 
-        .event-card:nth-child(3) {
+        .event-card:nth-child(1) {
             animation-delay: 0.3s;
         }
 
-        .event-card:nth-child(4) {
+        .event-card:nth-child(2) {
             animation-delay: 0.4s;
         }
 
@@ -354,45 +367,31 @@
             display: inline-block;
             background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
             color: white;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            padding: 0.2rem 0.5rem;
+            padding: 0.25rem 0.6rem;
             border-radius: 20px;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.75rem;
         }
 
         .event-title {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #374151;
-            margin-bottom: 0.25rem;
+            line-height: 1.3;
         }
 
-        .event-location {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: #6b7280;
-            font-size: 0.75rem;
-        }
-
-        .event-location svg {
-            width: 11px;
-            height: 11px;
-            fill: #ec4899;
-            flex-shrink: 0;
-        }
-
-        /* Mobile optimizations */
+/* Mobile optimizations */
         @media (max-width: 480px) {
             body {
                 padding: 0.5rem;
             }
 
             .card {
-                padding: 2rem 1.5rem;
-                height: 550px;
+                padding: 1.75rem 1.5rem;
+                height: 480px;
                 border-radius: 24px;
+                max-width: 340px;
             }
 
             h1 {
@@ -502,21 +501,15 @@
                     <p>February 14th</p>
                 </div>
 
-                <div class="event-card">
-                    <span class="event-time">12:00 PM</span>
-                    <div class="event-title">Brunch</div>
-                    <div class="event-location">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Restaurant Name???
+                <div class="event-cards-container">
+                    <div class="event-card">
+                        <span class="event-time">12:00 PM</span>
+                        <div class="event-title">Brunch</div>
                     </div>
-                </div>
 
-                <div class="event-card">
-                    <span class="event-time">4:00 PM</span>
-                    <div class="event-title">Couples Massage</div>
-                    <div class="event-location">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Spa Name???
+                    <div class="event-card">
+                        <span class="event-time">4:00 PM</span>
+                        <div class="event-title">Couples Massage</div>
                     </div>
                 </div>
             </div>
@@ -579,8 +572,8 @@
                 noBtn.style.top = '70%';
             } else if (interactionCount === 2) {
                 noBtn.textContent = 'Sure? 😢';
-                noBtn.style.left = '75%';
-                noBtn.style.top = '25%';
+                noBtn.style.left = '65%';
+                noBtn.style.top = '70%';
             } else {
                 noBtn.style.display = 'none';
             }
